@@ -2,7 +2,7 @@
 
 This project provides python classes to automate the building, training, and testing of tensorflow machine learning models.
 
-The structure is as follows:
+**The structure is as follows:**
 1. Create a class for the model architecture you would like to train. Example is in **Graphs/**
     - This class has an **__init__** method, which defines the weights, biases etc.
     - This class also has a **__call__** method, which takes as input some data, and return the output of the model
@@ -14,9 +14,11 @@ The structure is as follows:
     - (Not implemented yet) this class controls tensorboard
 4. (Not implemented yet) a *test* class which provides unit tests for machine learning models
 
+This structure separates *model structure code* from *evaluation code* from *training code*
+
 To see this structure in action, run **ann_example.py**. This loads a simple MLP and tries to learn the identity mapping (f(x) = x) - this is an experiment from the paper [Neural Arithmetic Logic Units](https://arxiv.org/pdf/1808.00508.pdf).
 
-**The benefits of this structure**:
+**The benefits of this structure:**
 * You don't have to clog up your model code with training and testing logic
 * To build and train a new model requires only a few lines to define weights and code the model structure. Nothing else needs to be touched
 * Can edit training logic without having to touch the model
