@@ -20,3 +20,7 @@ To see this structure in action, run **ann_example.py**. This loads a simple MLP
 * You don't have to clog up your model code with training and testing logic
 * To build and train a new model requires only a few lines to define weights and code the model structure. Nothing else needs to be touched
 * Can edit training logic without having to touch the model
+
+
+### TODO:
+* Add a basic GAN model and training class
