@@ -23,25 +23,14 @@ class BaseTrainer():
             init = tf.global_variables_initializer()
             self._Sess.run(init)
 
-    def train(self, x, y, batchSize, n_epochs, x_val=None, y_val = None,
-                print_every=100):
+    def train(self, batchSize, print_every=100):
         '''
         The main training loop.
-        Inputs:
-            x | np array of input data
-            y | np array of target data
-            batchSize | int
-            n_epochs | int, the number of epochs to train for
-            x_val | None or a np array of input validation data
-            y_val | None or a np array of target validation data
         '''
         print_every = max(0, print_every)
         assert int(print_every) == print_every, "Epoch number must be int"
 
         self.bs = batchSize
-        self.n_steps = x.shape[0] // batchSize
-        if x.shape[0] / batchSize != float(self.n_steps):
-            self.n_steps += 1
 
     def __train_epoch(self):
         raise NotImplementedError("Must define the training loop for an epoch")
@@ -75,11 +64,19 @@ class VanillaTrainer(BaseTrainer):
     def train(self, x, y, batchSize, n_epochs, x_val = None, y_val=None,
                 print_every=100):
         '''
-        The main training loop. Train for N epochs. At the end of each epoch,
-        calculate the loss and error on the validation data (if present).
-        Print the errors every 100 (default) epochs
+        Inputs:
+            x | np array of input data
+            y | np array of target data
+            batchSize | int
+            n_epochs | int, the number of epochs to train for
+            x_val | None or a np array of input validation data
+            y_val | None or a np array of target validation data
         '''
-        super().train(x, y, batchSize, n_epochs, x_val, y_val, print_every)
+        super().train(batchSize, print_every)
+
+        self.n_steps = x.shape[0] // batchSize
+        if x.shape[0] / batchSize != float(self.n_steps):
+            self.n_steps += 1
 
         for epoch in range(n_epochs):
             tr_err, tr_loss = self.__train_epoch(epoch, x, y)

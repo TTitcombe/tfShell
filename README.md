@@ -18,6 +18,8 @@ This structure separates *model structure code* from *evaluation code* from *tra
 
 To see this structure in action, run **ann_example.py**. This loads a simple MLP and tries to learn the identity mapping (f(x) = x) - this is an experiment from the paper [Neural Arithmetic Logic Units](https://arxiv.org/pdf/1808.00508.pdf).
 
+To see a more complex example, see **gan_example.py**, **Models/gan_model.py**, and **Training/gan_trainer.py**.
+
 **The benefits of this structure:**
 * You don't have to clog up your model code with training and testing logic
 * To build and train a new model requires only a few lines to define weights and code the model structure. Nothing else needs to be touched
@@ -25,4 +27,5 @@ To see this structure in action, run **ann_example.py**. This loads a simple MLP
 
 
 ### TODO:
-* Add a basic GAN model and training class
+* Add tensorboard support
+* Add unit testing class
